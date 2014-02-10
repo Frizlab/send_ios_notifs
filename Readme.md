@@ -23,11 +23,9 @@ send_notifs.sh sandbox|prod tokens_file message
 ```
 
   * `sandbox|prod`: Whether to connect to the sandbox or production server to send the push.
-
   * `tokens_file`: A file containing base64 encoded iOS devices tokens. One token per line. No comments possible.
-
   * `message`: The message sent to the devices.
 
 The certificate file to be used to connect to the Apple Push servers must be in `certificates/apple_push_certificate.pem` when in production mode, in `certificates/apple_push_certificate_sandbox.pem` when in sandbox mode.
 
-You can password protect your certificates. The password must be in `certificates/apple_push_certificate.pass` (or `certificates/apple_push_certificate_sandbox.pass`). ** Warning**: The handling of special characters in the password is far less than ideal (double quotes are known not to work, the rest is untested).
+You can password protect your certificates. The password must be in `certificates/apple_push_certificate.pass` (or `certificates/apple_push_certificate_sandbox.pass`). **Warning**: The handling of special characters in the password is far less than ideal (double quotes are known not to work, the rest is untested).
