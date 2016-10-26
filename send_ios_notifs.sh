@@ -32,7 +32,8 @@ if [ "$prod_or_sandbox" != "prod" -a "$prod_or_sandbox" != "sandbox" ]; then
 	exit 42
 fi
 
-payload='{"aps":{"alert":"'"$(printf "$(echo -n "$message" | sed -E -e 's/%/%%/g')" | sed -E -e 's/"/\\"/g')"'"}}'
+safer_message="$(echo -n "$message" | sed -E -e 's/%/%%/g')"
+payload='{"uid":"'"$$"'","view":"VIEW_MESSAGE","view-id":"10251_11843","aps":{"content-available":true,"alert":"'"$(printf "$safer_message" | sed -E -e 's/"/\\"/g')"'"}}'
 payload_len=$(echo -n "$payload" | wc -c | tr -d ' '); # Here, printf instead of echo -n won't work if payload contains for instance a double-quote
 if [ $payload_len -gt 255 ]; then
 	echo "Payload is too long." >/dev/stderr
